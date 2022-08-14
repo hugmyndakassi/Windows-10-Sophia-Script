@@ -1,8 +1,7 @@
 # This scripts counts the lines of code and comments in all JavaScript files.
 # The copyright-headers are substracted. It uses the command line tool "cloc".
 # All dumb comments like those /////////// or those // ------------ are also substracted.
-# You can either pass --loc, --comments or  --percentage to show the respective values
-# only.
+# You can either pass --loc, --comments or  --percentage to show the respective values only.
 
 # Exit the script when one command fails.
 set -e
@@ -14,7 +13,7 @@ cd "$( cd "$( dirname "$0" )" && pwd )/.." || \
 # Run cloc - this counts code lines, blank lines and comment lines for the specified extensions.
 # We are only interested in the summary, therefore the tail -1
 # https://github.com/AlDanial/cloc#options-
-SUMMARY="$(cloc --exclude-ext="bin" --exclude-dir="Sophia Script for Windows 10 LTSC 2019,Sophia Script for Windows 10 LTSC 2021,Sophia Script for Windows 10 PowerShell 7,Sophia Script for Windows 10,Sophia Script for Windows 11 PowerShell 7" . --md | tail -1)"
+SUMMARY="$(cloc --include-ext="ps1,psd1,psm1" --exclude-dir="Sophia Script for Windows 10 LTSC 2019,Sophia Script for Windows 10 LTSC 2021,Sophia Script for Windows 10 PowerShell 7,Sophia Script for Windows 10,Sophia Script for Windows 11 PowerShell 7" . --md | tail -1)"
 
 # The $SUMMARY is one line of a markdown table and looks like this:
 # SUM:|101|3123|2238|10783
