@@ -97,13 +97,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          $Tag   = "${{ github.ref_name }}"
+          $Tag   = "${{ inputs.tag }}"
           $ZIP = @((Get-Item -Path "Sophia_Script\Sophia*.zip").FullName)
-          $ZIP.Count
           $EXE = @((Get-Item -Path "Sophia_Script\Sophia*.exe").FullName)
-          $EXE.Count
           $Files = $ZIP + $EXE
-          $Files.Count
           $Title = "${{ steps.read_release.outputs.RELEASE_NAME }}"
 
           gh release create $Tag $Files --title $Title --notes-file ReleaseNotesTemplate.md
